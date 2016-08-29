@@ -196,17 +196,17 @@ server <- function(input, output) {
             return(NULL)
         
         theText <- "Fit Results:\n"
-        theText <- paste(theText, sprintf("MSE = %f\n", fitResults()$mse))
+        theText <- paste(theText, sprintf("MSE = %e\n", fitResults()$mse))
         theText <- paste(theText, "Polynomial Coeffs:\n")
         for (ind in 1:length(fitResults()$betas)) {
             if (ind == 1) {
-                theText <- paste(theText, sprintf(" Intercept\t%f\n", 
+                theText <- paste(theText, sprintf(" Intercept\t%e\n", 
                     fitResults()$betas[1]))                
             } else if (ind == 2) {
-                theText <- paste(theText, sprintf(" x\t\t%f\n", 
+                theText <- paste(theText, sprintf(" x\t\t%e\n", 
                     fitResults()$betas[2]))                   
             } else {
-                theText <- paste(theText, sprintf(" x^%d\t\t%f\n", 
+                theText <- paste(theText, sprintf(" x^%d\t\t%e\n", 
                     ind - 1, fitResults()$betas[ind]))                  
             }
         }
