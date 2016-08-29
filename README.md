@@ -8,3 +8,7 @@ app via a .csv file.  The alternate code implementations are:
 Shiny apps)
 * `ui.R` and `server.R`: an old-style two-file implememtation of the same 
 app
+
+Some demo data is at:
+[https://github.com/gchadder3/polynomialFitterShinyApp/raw/master/demofits.csv]
+(https://github.com/gchadder3/polynomialFitterShinyApp/raw/master/demofits.csv)
