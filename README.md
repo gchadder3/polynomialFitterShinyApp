@@ -9,6 +9,9 @@ Shiny apps)
 * `ui.R` and `server.R`: an old-style two-file implememtation of the same 
 app
 
+The project webpage is at:
+https://gchadder3.github.io/polynomialFitterShinyApp/polyfitter.html
+
 Some demo data is at:
 [https://github.com/gchadder3/polynomialFitterShinyApp/raw/master/demofits.csv]
 (https://github.com/gchadder3/polynomialFitterShinyApp/raw/master/demofits.csv)
