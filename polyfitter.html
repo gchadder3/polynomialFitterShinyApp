@@ -821,7 +821,7 @@ hljs.initHighlightingOnLoad();
 <ul>
 <li>The <a href="https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/mtcars.html">mtcars</a> dataset is initially selected, but you can then upload a .csv file (from local machine or Internet URL) to explore.</li>
 <li>Outcome and Predictor Variables can be chosen from columns in the dataset  (Available Variables), and the Polynomial Degree can be selected (0=constant, 1=linear, 2=quadratic, etc.).</li>
-<li>The Outcome vs. Predictor data points are plotted in blue against the polynomial fit found by R&#39;s <code>lm</code> function.
+<li>The outcome vs. predictor data points are plotted in blue against the polynomial fit found by R&#39;s <code>lm</code> function.
 
 <ul>
 <li>Data points missing either Outcome or Predictor Variable measurements are dropped.</li>
@@ -833,16 +833,16 @@ hljs.initHighlightingOnLoad();
 
 </section>
 <section data-transition="linear" data-transition-speed="default">
-<h3>Tutorial Part 1 (mtcars)</h3>
+<h3>Using the App, Part 1 (mtcars)</h3>
 <div class="slideContent" >
 <ul>
-<li>Open up the app by clicking <a href="https://gchadder3.shinyapps.io/polyfitter/">here</a>.</li>
+<li>Open up the app by clicking <a href="https://gchadder3.shinyapps.io/polyfitter/">here</a>. (You can right-click and open in a new tab.)</li>
 <li>Initially the app is set to explore the relationship between the Outcome Variable of miles-per-gallon (mpg) and vehicle weight (wt) for the 32 cars in the <a href="https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/mtcars.html">mtcars</a> dataset.</li>
 <li>Play with the Polynomial Degree value.  Decrement it to 1, then 0, then increment and watch the MSE values drop and the fit to the points improve.
 
 <ul>
 <li>Degrees 0 and 1 are clearly <em>under-fit</em>; Degree 2 begins to capture the curve in the data trend.</li>
-<li>As you increase the Degree, by 8, you start see wide digressions where there are gaps in the data points: clear evidence of <em>over-fitting</em>.</li>
+<li>As you increase the Degree, by 8 you start seeing wide digressions where there are gaps in the data points: clear evidence of <em>over-fitting</em>.</li>
 </ul></li>
 </ul>
 
@@ -850,7 +850,7 @@ hljs.initHighlightingOnLoad();
 
 </section>
 <section data-transition="linear" data-transition-speed="default">
-<h3>Tutorial Part 2 (Other Data)</h3>
+<h3>Using the App, Part 2 (Other Data)</h3>
 <div class="slideContent" >
 <ul>
 <li>Click the Choose File button, and then copy and paste the following URL into the file name: <a href="https://github.com/gchadder3/polynomialFitterShinyApp/raw/master/demofits.csv">https://github.com/gchadder3/polynomialFitterShinyApp/raw/master/demofits.csv</a></li>
@@ -858,6 +858,7 @@ hljs.initHighlightingOnLoad();
 <li>Explore the standard Normal (Gaussian) function (<code>norm</code> vs. <code>x</code>).</li>
 <li>Explore the \( sin(2 x) \) function (<code>sin</code> vs. <code>x</code>).</li>
 <li>Load and explore your own datasets of interest!</li>
+<li>The GitHub repository for all of the Shiny app code and this project is at <a href="https://github.com/gchadder3/polynomialFitterShinyApp">https://github.com/gchadder3/polynomialFitterShinyApp</a></li>
 </ul>
 
 </div>
