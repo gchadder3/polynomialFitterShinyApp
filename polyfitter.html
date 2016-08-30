@@ -771,6 +771,16 @@ hljs.initHighlightingOnLoad();
 </script>
 
    
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    showProcessingMessages: false,
+    messageStyle: "none"
+  });
+</script>
+
+<script type="text/javascript" src="polyfitter_files/mathjax-23/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
   
 
 
@@ -784,7 +794,7 @@ hljs.initHighlightingOnLoad();
   <div class="slides">
 
 <section data-state="section" data-transition="linear" data-transition-speed="default">
-<h1>Polynomial Fitter Shiny App</h1><p>George Chadderdon<br/>8&#x2F;29&#x2F;16</p>
+<h1>Polynomial Fitter Shiny App</h1><p>George Chadderdon<br/>8&#x2F;30&#x2F;16</p>
 
 <div class="slideContent" >
 
@@ -792,58 +802,63 @@ hljs.initHighlightingOnLoad();
 
 </section>
 <section data-transition="linear" data-transition-speed="default">
-<h3>Slide 2</h3>
+<h3>Polynomial Regression</h3>
 <div class="slideContent" >
-<p>For more details on authoring R presentations click the
-<strong>Help</strong> button on the toolbar.</p>
+<ul>
+<li>We want to estimate a relationship between a numeric outcome variable \( y \) (e.g. course grade) and a numeric predictor variable \( x \) (e.g. IQ) using <a href="https://en.wikipedia.org/wiki/Polynomial_regression">polynomial regression</a>:</li>
+</ul>
+
+<p>\[ y = \beta_{0} + \beta_{1}x + \beta_{2}x^2 + \dots + \beta_{n}x^n + \epsilon \]</p>
+
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfgAAAFoCAMAAACMkBkOAAAAllBMVEUAAAAAADoAAGYAAP8AOjoAOmYAOpAAZpAAZrY6AAA6ADo6AGY6OmY6OpA6ZrY6kJA6kNtmAABmADpmAGZmOgBmOjpmOpBmZjpmZmZmtrZmtv+QOgCQOjqQOmaQZgCQtpCQ29uQ2/+2ZgC2Zjq2tma2/7a2/9u2///bkDrb/7bb/9vb////AAD/tmb/25D//7b//9v////4EPzWAAAACXBIWXMAAAsSAAALEgHS3X78AAARsElEQVR4nO2dC3vbthWG5XpN5aRu5aTbWjndYm2d1VqSxf//5yZcCd5B4oAEcb73eRLJJAGBeHlAkOBlUwCWbJYuAFgGiGcKxDMF4pkC8UyBeKZAPFMgnikQzxSIZwrEMwXimQLxTIF4pkA8UyCeKRDPFIhnCsQzBeKZAvFMgXimQDxTIJ4pEM+UeOIvDx/exOf703ev03N5f1K5iG+bzWbnzLo+64zrv3B93kj2asZh31nCzd2LyXmjvk/h9gNuEcx3W4wRaavogu1rCUiILz4MK/6sanFbzrLi61Rr/NBZ82ZOoPj6D4wR3104p2Du5t6fYATzRPzN0X83G1kfR10VZ1XV1+e7f+oqt1PMsqLmftPib993IvHdi/Qttge14G22rGmxsN4Q3Kbgf89ya7kF98ZuJkdZl9KLzNxuXJcHUdTNvlbcXVE0V8BMkdlsZRH0CpTi3fKUJTarVknb8kNmEzpvbN4qgfmhIOYSb8L1oDdhtTGLuiir35kiltVfVC4qt+vz3q1GPb/8hVqNW/EmbzlVFWHbIl7E07nyy4dqWZwVMFNKeeZH+sRXsrOFu81u/lBh246D2GnJvP9qrs1UZhO/u22nH97kRFMjeo7TeteWvS121Ct4tu2dW41iA7p7EankwrodtJWnq3Rf2e1cHmRU3v6rNfWy7fjbg2o95Ka5t8s2V8BOkdkY2WoDqDT121qJ7aqJdCZt84dMboVoDPb2r7LMIT2nYj7xcr0+vOk9tWinRHXrORpnilp2W0Zjq3jZdVN9uLOzI2yKl2p1TclsZWU2xYtGdG9i9bjZ2WWbK2CnOOLVCvSJt7no0pq0zR8yVafLqvPWZdZ/hDDbPv61Wm9ip1sVX06xyzriW5v6iviy4ah292VVycxNV6Ip3rYHR7OjbYivr4Cd4kStWoHefbyzaoIW8Sbbwm3qTd66/Sp3a5OZWbxtc2+1qvtSRnw5xS7rNPW3bdx27m7rfty0NfVHFUgt4gX6S1tTb8RfHn54lv3LZlNfX4GmeLMCLeJtiaurtmtr6hviRefO5C0T2D9CiCledYMq4nUnxkSOK76cUu+8ObPL7pVn5052m7aVGDmUGVWaetXOCrNtnbv6ClSmbFXUdkR8M40t7aHZuauIVwXb2cqRCewfIcwtXq6h/tyZfZrCTjHLiur5uXkCR3z5rXE4J5LrrKrib+UQIeYcAOkjp6b4o9ocdjZn9yirtgLlFPEDf2p5YgWa4p0SO7mI8ti0LT9UOYGj81ZrY/4IAadsW+g8NZQREN8CxDMF4kG2QDxTIJ4pEM8UiGcKxDMF4pkC8UyBeKZAPFMgnikQzxSIZwrEMwXimQLxTIF4pgyL1xdN5n9NCi8GxYt7GARnintfQTIMin//8lr5BHkQEvEbkDKB4s1V/S37+OQ7hskXMCbB4uOknYXkCxgTiGdKqHjRqROtfUunPvl6Tb6AMSEQLzv0l5/Gp12a5AsYEwLxl8e3yuGcZ79xeZIvICX39/eVv4PFP919+11E/GPzcG5k0WYn+QIScq//WcI7d/L5RGcczqVNBPFR0s5C8gUkBOIdki8gJdT7eJq0aoivfHjH5dNrfeauOa+yVNwC5kci4j/Jx8DtK39XZ35uPqMT4gMI79XrY7dm726seHlkIMJbPKFTPRdub2eKwSA5Wfx5efyXWeoccCkAxE+eXQgju445Zdr7dspFlfhbVIvAFmY/vepvZubl40tx2IlBQDH7wXwTpw+O28ZP+wHxk2cL2hph37QGZfj6VeYkzgmpRlydFTIdAHl2+POL2i6czWMyED95NlVaG/HyiW3fKfEH3YqbXbn4vG0bFfH2bQKRC5gfKYk/i6dQ7k0sq29FKb4t4osi4KoviJ88myqt7dVLpR+t3I8vhdN5L/fxVryQDvFTSES8PY4/bjbf/yKfW6q+FY74slevxIulDujVTyMN8cuQfAFjAvFMgXimQDxTIJ4paYivj84NLW76+ced/to3XqMvDtKDfOXxP8RPn02Vtj4618/ZHMHdlPqM0B139jcK9xvET55NlbYcnVPH6uLj+7+/XH78Rb6oT08xL425+7c2dzAn98ohO7ugGtxTOXxxTgBePv1hcoL4ybM90w7evVWeqz/s5GibOEkn3vyzL5wpdhjOGcNxxKshO72gGeZ7kG9scc4DoalXpBTx169yWFZfqq/GYwozRX24i6vx+4pOPV6nF7TDfLKtl/v4LcRrUhIvxuPFdR23UL8pNeLVFP3hLi7juyneLFgO82nxiHiXlMSL0Tkbq1Z8OaW2eEfE6+XtMF8B8W0kJF726g92Ry328XJYvpxi3/jYuo9X4ssxPD3MV2Af30Yi4u1x/K2l1q8U/kFFvDPFXnFhzB3Mi1S3jni9oBrcUzlUe/Wv5i1SED95drS0hdc1tC33bbVx7LgqEOInz46VVrw91OeKqi6lFTo3D4ifPDta2llIvoAxgXimQDxTIJ4paYgfNSzr3DUlOne3P90n8BzK267kl64x2XEFzI9ExI8YlhXL6uEaYfUoNoJDaf5Qy6RrTHZcAfMjIfG+w7J2eSFZ3UN1fd7bE3e/yuFYeyana0w2cOVWzyziT+2Ui44cltXfhNPKaVwp3txyIe6vled628/XBq7c6kkp4n2HZS8P6uSOaCHO7hi9FC+2lb1juGNMNnDlVkP9SRiGlMR7D8vqBl4Oyz7WIv4/L0a8ntMxNBe4cmuhfPbNqTojJfHew7JmvE30CRr7+L3+qxrx7MWf0hXvOSwr/le65cZgevVikvh+MA262Mebth/i6wGfivgxw7JH2+ZLp+Y4/jb55y+yV3/30t2rt2OygSu3GvQ+vh7wiYhvg2hYtmcAj4V4Td17ouLphmX7tg2I7wbn6vOg0dJDPA8a3iGeBc2Ah3gWNL1DPAsgvkLyBaSipaWPKj55AlZuVbR4Zx3xXGgLeIhnQJt3iGcAxPOktaWH+Pxp9Q7x2dMe8BCfPe3eIT53OgIe4nOnwzvE50408epyuba3BUB8AnS19MHixbWsgpb3g0B8AnR5DxZvrnevXffulRZEpzPgEfF50+k9fB+v3zGKfXyKdAc8evVZ0+0d4nOmJ+BxOJct9/f3Pd7RucsVccdcTPEth3PsLmlLkvv+lh4RnytCfPuzMBQ4nMuV+96AR68+X3q9Q3y29Ac8xGdLv3eIz5WBgA8/nHvSx27N3h3EL8mA9/CIvz53PY4E4hdkKOAJmnr16LFpaUEshrxjH58pEM+TwZYe4vNk0DvEZ8lwwEN8lgx7h/gc8Qh4iM8RD+8QnyE+AQ/xGeLjHeLzwyvgIT4/vLxDfHb4BTzEZ4efd4jPDc+Ah/jcOHW9YbAGxOeFDHgf8xCfF6fy1ZL9+IkXb4XabPsXHZs1iMCJVry6ru440jzEz8+p+y3CNbzEqzsiWx5zE5I1oMe3S1/4NvUy2BHxyePv3TPiuy+en541IGdEwKNXnxMjvEN8RowJeM+m/h/iqQfX39G5S5ox3j0j/vKwLQ4+r3cekTUgZlTAezf1581+bEEgflbGeUfEZ8M479jH58LIgEevPhdGevcfpPnwZ9ft0BOzBpSMDXjvQZrL41vLo+xCsgaUjPXuPUhzE49BmnQZHfBjIv6IiE+W0d7HXIgx0jvEz8f4gEevPgfUhXZ+F2AYID4DzAWWY8xD/Po5QTxP5A4e4tmhe3bYx3NjfI9eAPFrZ8KhnADiV85E7xC/diZ6h/iVMzXgIX7lTPUO8etmcsBD/KqZ7h3iV8107xC/ZgICHuLXTIB3iF8xIQEP8etl2uCMAeJXi/ZejBuONUD8WjktLP7ygNeIL4HZwXuKvymqTRhYfijD67O6i7blbguIj4nt2Hns4zcN7eHizV0WLXdbQHxEvHv0bdLl9IFkQ/ki4hfB82UEXdYLgn28fiIW9vGz4vOaqW7pcvZA6lHFoUsLehl8OfyA9SKK+I1hQlrgQ793v6qn6NyJ1r7lxjqIj0W3d/+AIxAvO/SXn8anBdPoCvhRrSyB+MvjGw7nZqTV++h9a7D4p7tv4qFI0v7ItGASDe+TOlThnbvr82ZbnHE4Nxc24NUpu6m9aBzOrYzS+8RQ10D8yrANvZA+aSReJw+aHS0t6EAFvAl1iOeC8G7a94mX3mggfk2cTmRnRCF+NdyUn+jqFOLXgYz0oMtq6xkGzY6WFjiYrhyld4hPnXKnTuod4lOmeoKG1DvEJ0u9/04b8BCfJC3nYk9jLqv1+Ymg2dHScqb1UN3xXgSdsbO/EjQ7WlqudA27OO08xOdG31ibs3+H+KzoPxVb6dhhH58Lg8PqxB169aNBs6Ol5YPHqEsM7xC/JH5X0ETxDvGL4TvAGsc7xC/CmIvliE/c2CIEzY6WNmNGXiHpXlxJcRhnixE0O1raXBl9AQ35GTtbkqDZ0dLmyJSLoenP2NnSBM2OljY7pl0rF+HEjQHi4zP5vodIHXoJxEcm4LLYmN4hPiZhj4eI6h3ioxF6BTz1lRc1ID4GBLc9RDuO00A8NTSP/4l3HKeBeFKo7nA60V95UQPiySB80le1X4d9fMKQPt4tbn9eAfHhUD/Uzz6YOkakGyA+EPonOY58IPlEID6AKM/vjDUOWwPiJxLroa2xj98NED+FeE/qrRzHYR+fElGfzyy9RxVugPhRxH0o90l5L2I28QaI9yb6o9gD3ys1Doj3Y4bn789zGGeA+GHmeetC5GHYOhDfz2yv2hDeZzGugfge5pKuu3XztPEaiO9gtlAXqGYe4hdnTumF8C59Q/yizBrqAtvMYx+/HHNLL0y4z2dcA/GW2UNdRLgId4hfkAVCXcjWvboZm3gDxC8hXZkW4T6/cQ138fO374XtvttO3RKwFr/ETl1+FDrcF2jiDWzFLxHq94UT7TNcSdvHasSfehhftJmlu5EuvyytPX3xPnbHbQKzhrruxdX+LR7uRdLiJ0Tz4AYwl/RqiJeRfp9CKy9JU/zEFryWvpZD1FA3pqttel18kYr2FMUHOm9kJTOLJr09tBv/TPc9Fe3JiaeTXs1zeq7GWe2zP7SrbbtbkqnFICch8WSh7jqSoX77dNr+doUdnx3/Bia3nYSNsU0HECz+8iDrdvD98UPVfapcUu4nZ8iVat8dKcb+sEJPw3XTnadk0rJehIu/Pu/l5/nDW2/a/oo76UGqsNqvTFZ79baltX0S8X7jK4kFuyRU/PuX18pnoTtS9c5UT32eTnZImkp8XXpz6VNL8Lf/629sPEjQepFAxFfuHqEQX25zwzsGZb/VLM1YaYqxrgjex78/hezj69Ueuo+fctQ29byvV8b0uRKxaK+etmLCDtWJ9UfaluhYUDxlzVCdoCHRn7x0wWLiCeuG/KzciCGf1oSkhYnEQuLJaifmCfgRo36TN5XFWEQ8VQ3NNsB6GmSWYlASU3wHt2rqmgXmI574SZD+II/MojiC+PQzg3immUE808wgnmlmEM80M4hnmlke4kEaQDxTIJ4pEM8UiGcKxDMF4pkC8UyBeKZAPFPmF2/u0CBA3NZHlNn706Z5x8hUCMtVkFaYw/zij2R18v75pbh8fKHISlTucUuRU0FaLgFdhbnMLv7y4y9U63EWpg4kuYk7Ay+fmjcLTYKwXAVphbnMLf769RtpyyWii4DL4xtVVgqyzKgrzDC3+OOOdJd1fd6R5CNuCaUUT1Uu8gqzzCj+sNlsb5FFsx4iM9ElI6pf4ognK1dBVmF1Zo74o7zim6xWHsj6iZT7eMJyEVeYw5oP5wjrVzTNZL16wnIJsoj4gnI9VDTQ5EZ5HE9ZriIf8SAJIJ4pEM8UiGcKxDMF4pkC8UyBeKZAPFMgnikQzxSIZwrEMwXimQLxTIF4pkA8UyCeKRDPFIhnCsQzBeKZAvGKA+F19asA4hXvX/74QnUjzSqAeM0xxn1KCQPxGsInGawCiNccfmW1i4d4zeXxr6+sQh7iJeLGxJb3ZWcMxDMF4pkC8UyBeKZAPFMgnikQzxSIZwrEMwXimQLxTIF4pkA8UyCeKRDPFIhnCsQzBeKZ8n/1KwBYBmoWFAAAAABJRU5ErkJggg==" title="plot of chunk unnamed-chunk-1" alt="plot of chunk unnamed-chunk-1" style="display: block; margin: auto;" /></p>
+
+</div>
+
+</section>
+<section data-transition="linear" data-transition-speed="default">
+<h3>Functionality of App</h3>
+<div class="slideContent" >
+<ul>
+<li>The <a href="https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/mtcars.html">mtcars</a> dataset is initially selected, but you can then upload a .csv file (from local machine or Internet URL) to explore.</li>
+<li>Outcome and Predictor Variables can be chosen from columns in the dataset  (Available Variables), and the Polynomial Degree can be selected (0=constant, 1=linear, 2=quadratic, etc.).</li>
+<li>The Outcome vs. Predictor data points are plotted in blue against the polynomial fit found by R&#39;s <code>lm</code> function.
 
 <ul>
-<li>Bullet 1</li>
-<li>Bullet 2</li>
-<li>Bullet 3</li>
+<li>Data points missing either Outcome or Predictor Variable measurements are dropped.</li>
+</ul></li>
+<li>Mean-squared error (MSE) and the \( \beta \) coefficients are shown for the fit beneath the plot.</li>
 </ul>
 
 </div>
 
 </section>
 <section data-transition="linear" data-transition-speed="default">
-<h3>Slide 3</h3>
+<h3>Tutorial Part 1 (mtcars)</h3>
 <div class="slideContent" >
-<pre><code class="r">summary(cars)
-</code></pre>
+<ul>
+<li>Open up the app by clicking <a href="https://gchadder3.shinyapps.io/polyfitter/">here</a>.</li>
+<li>Initially the app is set to explore the relationship between the Outcome Variable of miles-per-gallon (mpg) and vehicle weight (wt) for the 32 cars in the <a href="https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/mtcars.html">mtcars</a> dataset.</li>
+<li>Play with the Polynomial Degree value.  Decrement it to 1, then 0, then increment and watch the MSE values drop and the fit to the points improve.
 
-<pre><code>     speed           dist       
- Min.   : 4.0   Min.   :  2.00  
- 1st Qu.:12.0   1st Qu.: 26.00  
- Median :15.0   Median : 36.00  
- Mean   :15.4   Mean   : 42.98  
- 3rd Qu.:19.0   3rd Qu.: 56.00  
- Max.   :25.0   Max.   :120.00  
-</code></pre>
+<ul>
+<li>Degrees 0 and 1 are clearly <em>under-fit</em>; Degree 2 begins to capture the curve in the data trend.</li>
+<li>As you increase the Degree, by 8, you start see wide digressions where there are gaps in the data points: clear evidence of <em>over-fitting</em>.</li>
+</ul></li>
+</ul>
 
 </div>
 
 </section>
 <section data-transition="linear" data-transition-speed="default">
-<h3>Slide With Plot</h3>
-<div class="mediaOnly slideContent" >
-<p><img src="data:image/png;base64,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" alt="plot of chunk unnamed-chunk-2"/></p>
-
-</div>
-
-</section>
-<section data-transition="linear" data-transition-speed="default">
-<h3>Slide 4</h3>
+<h3>Tutorial Part 2 (Other Data)</h3>
 <div class="slideContent" >
-<p>rock on!</p>
-
-</div>
-
-</section>
-<section data-transition="linear" data-transition-speed="default">
-<h3>Slide 5</h3>
-<div class="slideContent" >
-<p>rock on again!</p>
+<ul>
+<li>Click the Choose File button, and then copy and paste the following URL into the file name: <a href="https://github.com/gchadder3/polynomialFitterShinyApp/raw/master/demofits.csv">https://github.com/gchadder3/polynomialFitterShinyApp/raw/master/demofits.csv</a></li>
+<li>Explore the exponential function \( e^x \) (<code>exp</code> vs. <code>x</code>).</li>
+<li>Explore the standard Normal (Gaussian) function (<code>norm</code> vs. <code>x</code>).</li>
+<li>Explore the \( sin(2 x) \) function (<code>sin</code> vs. <code>x</code>).</li>
+<li>Load and explore your own datasets of interest!</li>
+</ul>
 
 </div>
 
