@@ -48,4 +48,4 @@ Using the App, Part 2 (Other Data)
 * Explore the standard Normal (Gaussian) function (`norm` vs. `x`).
 * Explore the $sin(2 x)$ function (`sin` vs. `x`).
 * Load and explore your own datasets of interest!
-* The GitHub repository for all of the Shiny app code and this project is at [https://github.com/gchadder3/polynomialFitterShinyApp](https://github.com/gchadder3/polynomialFitterShinyApp)
+* The GitHub repository for all of the Shiny app code and this documentation is at [https://github.com/gchadder3/polynomialFitterShinyApp](https://github.com/gchadder3/polynomialFitterShinyApp)
